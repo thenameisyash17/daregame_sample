@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freshers Party Dare Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: url("c248b14f-5bcf-4564-8027-2918527b54a1.jpg") no-repeat center center/cover;
+      overflow: hidden;
+    }
+
+    .event-details {
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      max-width: 90%;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      animation: fadeIn 1.5s ease;
+    }
+
+    .event-details h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #ffd700;
+    }
+
+    .event-details p {
+      margin: 5px 0;
+      font-size: 1rem;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+      max-width: 500px;
+      backdrop-filter: blur(4px);
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ffcc00;
+      text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
+    }
+
+    .dare-box {
+      margin: 15px 0;
+      font-size: 1.5rem;
+      color: #fff;
+      min-height: 70px;
+      transition: all 0.3s ease-in-out;
+      animation: fadeIn 0.8s ease;
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff007f, #ffcc00);
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #ff007f;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #ffcc00;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px #ff007f; }
+      100% { box-shadow: 0 0 40px #ffcc00; }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      opacity: 0.8;
+      top: -10px;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Event Details -->
+  <div class="event-details">
+    <h2>🎉 Fresher’s Party 2K25 🎉</h2>
+    <p><strong>Date:</strong> 27 Sep 2025 | <strong>Time:</strong> 2:00 PM</p>
+    <p><strong>Venue:</strong> Open Auditorium</p>
+    <p><em>Special welcome to AIML & CAI Department Freshers 💜</em></p>
+  </div>
+
+  <!-- Dare Game -->
+  <div class="container">
+    <h1>🎯 Dare Challenge 🎯</h1>
+    <div class="dare-box" id="dareText">Click below to get a dare!</div>
+    <button onclick="showDare()">🎲 Get Dare</button>
+  </div>
+
+  <script>
+    const dares = [
+      "Dance like a robot for 30 seconds 🤖",
+      "Speak in a funny accent for 2 minutes 🎭",
+      "Do 10 push-ups 💪",
+      "Call a random friend and sing 'Happy Birthday' 🎶",
+      "Act like your favorite teacher for 1 minute 👨‍🏫",
+      "Propose to any random friend as a joke 💌",
+      "Do a moonwalk across the room 🕺",
+      "Speak only in rhymes for 3 minutes 🎤",
+      "Act like a cat and meow for 1 minute 🐱",
+      "Tell the most embarrassing moment of your life 😅",
+      "Sing a romantic song to a random person 🎶",
+      "Dance without music for 1 minute 💃",
+      "Act like a news reporter and report what’s happening in the room 🎙️",
+      "Imitate a celebrity until someone guesses correctly 🎬",
+      "Hold a funny pose for 30 seconds 🧘‍♂️",
+      "Talk like a baby for the next 2 minutes 👶",
+      "Pretend to be invisible and sneak around 🕵️‍♂️",
+      "Act like you just won a lottery 🤑",
+      "Spin 10 times and try to walk straight 🔄",
+      "Do your best impression of a villain 😈",
+      "Say a cheesy pick-up line to someone 😍",
+      "Roast any friend for 30 seconds 🔥",
+      "Pretend you are a waiter and take fake orders 🍽️",
+      "Say a tongue twister 5 times fast 👅",
+      "Dance on one leg for 20 seconds 🦵",
+      "Talk without using words with the letter 'A' for 2 minutes 🔤",
+      "Show your most funny expression 😂",
+      "Pretend to cry like a baby loudly 😭",
+      "Do an evil laugh for 20 seconds 😈",
+      "Give a motivational speech about ‘Eating Pizza’ 🍕",
+      "Balance something on your head for 1 minute 🎩",
+      "Make a scary face and scare someone 👻",
+      "Act like a teacher scolding the class 📚",
+      "Pretend you are a stand-up comedian and tell 2 jokes 🎤",
+      "Pretend you are stuck in slow motion 🕰️",
+      "Make a weird animal noise 🐒",
+      "Propose to the wall dramatically 😂",
+      "Say the alphabet backward 🔡",
+      "Pretend the floor is lava and jump on chairs 🔥",
+      "Act like you are giving a film award speech 🏆",
+      "Do an imaginary sword fight ⚔️",
+      "Spin around and then try to touch your nose 👃",
+      "Pretend like you are a chef cooking something 🍳",
+      "Speak without moving your lips for 1 minute 🤐",
+      "Pretend like you are swimming 🏊",
+      "Talk in slow motion for 1 minute 🐢",
+      "Pretend you are riding a bike 🏍️",
+      "Dance like a Bollywood hero/heroin 🎥",
+      "Do a TikTok dance challenge (even if you don’t know one) 🎵",
+      "Say 3 nice things about the person next to you ❤️"
+    ];
+
+    function showDare() {
+      const randomIndex = Math.floor(Math.random() * dares.length);
+      const dareBox = document.getElementById("dareText");
+      dareBox.textContent = dares[randomIndex];
+      dareBox.style.animation = "none";
+      dareBox.offsetHeight; // Trigger reflow
+      dareBox.style.animation = "fadeIn 0.8s ease";
+      launchConfetti();
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 20; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    }
+  </script>
+</body>
+</html>
